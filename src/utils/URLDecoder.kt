@@ -2,7 +2,8 @@ package utils
 
 import java.util.*
 
-class URLDecoder {
+object URLDecoder {
+
     fun decode(bytes: ByteArray): String {
         return String(Base64.getDecoder().decode(bytes))
     }
@@ -15,7 +16,4 @@ class URLDecoder {
         return Base64.getEncoder().encode(str.toByteArray())
     }
 
-    fun encode(bytes: ByteArray): ByteArray {
-        return Base64.getEncoder().encode(bytes)
-    }
 }
