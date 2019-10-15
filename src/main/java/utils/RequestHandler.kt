@@ -10,7 +10,7 @@ import java.net.URL
 class RequestHandler {
 
     fun getData(link: String, lines: Boolean=false): String {
-        val url = URL(link)
+        var url = URL(link)
         val sb = StringBuilder()
         val connection= url.openConnection() as HttpURLConnection
             connection.setRequestProperty("User-Agent","Dalvik/2.1.0 (Linux; U; Android 9; Nokia 7.1 Build/PPR1.180610.011)")
@@ -28,7 +28,8 @@ class RequestHandler {
             }
         } catch (ex: Exception) {
             ex.printStackTrace()
-        } finally {
+        }
+        finally {
             connection.disconnect()
         }
         return sb.toString()
