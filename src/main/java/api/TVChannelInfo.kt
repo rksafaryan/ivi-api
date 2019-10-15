@@ -1,0 +1,4 @@
+package api
+
+interface TVChannelInfo {
+}

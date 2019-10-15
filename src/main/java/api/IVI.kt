@@ -1,26 +1,37 @@
 package api
 
+import model.DeviceApp
+import model.Method
 import utils.RequestHandler
+import utils.URLDecoder
 
-class IVI(): FilmProvider {
+class IVI: VideoInfo {
+    private val BASE_URL: String = "https://api.ivi.ru/mobileapi"
 
-    private val BASE_URL: String = "https://api.ivi.ru"
-    private val app_v: String = "19782"
-
-    override fun getFilmAwards(id: Int): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun getVideoAwards(videoId: Int): String {
+        return RequestHandler().getData(
+            "${BASE_URL}/${URLDecoder.decode(Method.AWARDS.link)}?id=${videoId}&app_version=${DeviceApp.MOBILE_PHONE.code}"
+        )
     }
 
-    override fun getFilmActors(id: Int): String {
-        return RequestHandler().getData("${BASE_URL}/mobileapi/video/persons/v5/?id=${id}&app_version=${app_v}")
+    override fun getVideoInfo(videoId: Int): String {
+        return RequestHandler().getData(
+            "${BASE_URL}/${URLDecoder.decode(Method.INFO.link)}?id=${videoId}&app_version=${DeviceApp.MOBILE_PHONE.code}"
+        )
     }
 
-    override fun getFilmInfo(id: Int): String {
-        return RequestHandler().getData("${BASE_URL}/mobileapi/videoinfo/v6/?id=${id}&app_version=${app_v}")
+    override fun getVideoPersons(videoId: Int): String {
+        return RequestHandler().getData(
+            "${BASE_URL}/${URLDecoder.decode(Method.PERSONS.link)}?id=${videoId}&app_version=${DeviceApp.MOBILE_PHONE.code}"
+        )
     }
 
-    override fun searchFilm(query: String): String {
+    override fun searchVideo(query: String): String {
         val queryStr = query.replace("[\\s,.]".toRegex(),"%20")
-        return RequestHandler().getData("${BASE_URL}/mobileapi/search/v5/?query=${queryStr}&app_version=${app_v}")
+
+        return RequestHandler().getData(
+            "${BASE_URL}/${URLDecoder.decode(Method.SEARCH.link)}?query=${queryStr}&app_version=${DeviceApp.MOBILE_PHONE.code}"
+        )
     }
+
 }

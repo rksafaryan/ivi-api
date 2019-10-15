@@ -1,0 +1,16 @@
+package model
+
+enum class DeviceApp(val code: Int) {
+    CHILDREN_PHONE(17601),
+    CHILDREN_TABLET(17619),
+    COMIGO(4856),
+    ICONBIT(13100),
+    SELENGA(18533),
+    INVIN(18533),
+    DIVISAT(18533),
+    VMEDIA(14512),
+    MOBILE_PHONE(19782),
+    MOBILE_TABLET(19854),
+    TV(18533),
+    WEB(870)
+}
